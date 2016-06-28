@@ -1,7 +1,5 @@
 package com.priteshjain.popularmovies.constants;
 
-/**
- * Created by priteshjain on 28/06/16.
- */
 public class Constant {
+    public static final String BASE_URL = "http://api.themoviedb.org/3/";
 }
