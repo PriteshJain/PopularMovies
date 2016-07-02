@@ -94,11 +94,11 @@ public class Movie extends BaseModel {
     }
 
     public String getThumbPosterUrl(){
-        return Constant.BASE_POSTER_URL + ImageSize.THUMB + posterPath;
+        return Constant.BASE_POSTER_URL + ImageSize.THUMB.getSize() + posterPath;
     }
 
     public String getLargePosterUrl(){
-        return Constant.BASE_POSTER_URL + ImageSize.LARGE + posterPath;
+        return Constant.BASE_POSTER_URL + ImageSize.LARGE.getSize() + posterPath;
     }
 
     public void setPosterPath(String posterPath) {

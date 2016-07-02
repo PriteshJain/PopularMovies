@@ -1,5 +1,6 @@
 package com.priteshjain.popularmovies.network;
 
+import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.priteshjain.popularmovies.BuildConfig;
@@ -19,6 +20,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class HttpClient {
     Gson gson = new GsonBuilder()
+            .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
             .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
             .create();
 

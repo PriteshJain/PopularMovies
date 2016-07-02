@@ -11,10 +11,10 @@ public class RequestHandler {
     public RequestHandler(){
         endpointClient = new HttpClient().getClient();
     }
-    public Observable<PaginatedMovie> getPopularMovies() {
-        return endpointClient.getPopularMovies();
+    public Observable<PaginatedMovie> getPopularMovies(String page) {
+        return endpointClient.getPopularMovies(page);
     }
-    public Observable<PaginatedMovie> getTopRatedMovies() {
-        return endpointClient.getPopularMovies();
+    public Observable<PaginatedMovie> getTopRatedMovies(String page) {
+        return endpointClient.getPopularMovies(page);
     }
 }

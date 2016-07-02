@@ -16,6 +16,7 @@ import com.priteshjain.popularmovies.adapters.MovieListAdapter;
 import com.priteshjain.popularmovies.models.Movie;
 import com.priteshjain.popularmovies.presenters.IMoviesListingView;
 import com.priteshjain.popularmovies.presenters.MovieListPresenter;
+import com.priteshjain.popularmovies.util.EndlessRecyclerOnScrollListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +50,7 @@ public class MovieListFragment extends Fragment implements IMoviesListingView {
         super.onCreate(savedInstanceState);
         mContext = getContext();
         mMovieListAdapter = new MovieListAdapter(mMovies, mContext, this);
-        mMovieListPresenter = new MovieListPresenter(this, mContext);
+        mMovieListPresenter = new MovieListPresenter(this);
         setHasOptionsMenu(true);
     }
 
@@ -64,15 +65,13 @@ public class MovieListFragment extends Fragment implements IMoviesListingView {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mMovieListPresenter.displayMovies();
+        mMovieListPresenter.displayMovies("1");
     }
 
     @Override
     public void listMovies(List<Movie> movies) {
-        mMovies.clear();
         mMovies.addAll(movies);
         mMovieListAdapter.notifyDataSetChanged();
-
     }
 
     @Override
@@ -99,8 +98,21 @@ public class MovieListFragment extends Fragment implements IMoviesListingView {
         RecyclerView moviesListing = (RecyclerView) rootView.findViewById(R.id.movies_list);
         moviesListing.setHasFixedSize(true);
         int columns = 2;
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getActivity(), columns);
-        moviesListing.setLayoutManager(layoutManager);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), columns);
+        moviesListing.setLayoutManager(gridLayoutManager);
         moviesListing.setAdapter(mMovieListAdapter);
+        moviesListing.addOnScrollListener(new EndlessRecyclerOnScrollListener(gridLayoutManager) {
+            @Override
+            public void onLoadMore(int current_page) {
+                Log.i(TAG, "onLoadMore: " + current_page);
+                mMovieListPresenter.displayMovies(current_page + "");
+            }
+        });
+    }
+
+    @Override
+    public void onPause() {
+        mMovieListPresenter.stopFetchingMovies();
+        super.onPause();
     }
 }
