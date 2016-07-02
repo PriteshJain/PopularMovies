@@ -1,18 +1,49 @@
 package com.priteshjain.popularmovies;
 
 import android.annotation.SuppressLint;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
+
+import com.priteshjain.popularmovies.views.MoviesActivity;
+
+import java.util.concurrent.TimeUnit;
+
+import rx.Observable;
+import rx.Observer;
+import rx.Subscription;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
 public class SplashscreenActivity extends AppCompatActivity {
+
+    private Subscription subscription;
+
+    Observer observer = new Observer() {
+        @Override
+        public void onCompleted() {
+
+        }
+
+        @Override
+        public void onError(Throwable e) {
+
+        }
+
+        @Override
+        public void onNext(Object o) {
+            Intent intent = new Intent(SplashscreenActivity.this, MoviesActivity.class);
+            startActivity(intent);
+            finish();
+        }
+    };
+
     /**
      * Whether or not the system UI should be auto-hidden after
      * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
@@ -159,4 +190,22 @@ public class SplashscreenActivity extends AppCompatActivity {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
     }
+    @Override
+    public void onBackPressed() {
+        subscription.unsubscribe();
+        super.onBackPressed();
+    }
+
+    @Override
+    protected void onPause() {
+        subscription.unsubscribe();
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        subscription = Observable.timer(3, TimeUnit.SECONDS).subscribe(observer);
+        super.onResume();
+    }
+
 }

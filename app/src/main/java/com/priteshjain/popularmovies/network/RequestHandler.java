@@ -1,9 +1,7 @@
 package com.priteshjain.popularmovies.network;
 
 import com.priteshjain.popularmovies.constants.ApiEndpoint;
-import com.priteshjain.popularmovies.models.Movie;
-
-import java.util.List;
+import com.priteshjain.popularmovies.models.PaginatedMovie;
 
 import rx.Observable;
 
@@ -13,10 +11,10 @@ public class RequestHandler {
     public RequestHandler(){
         endpointClient = new HttpClient().getClient();
     }
-    public Observable<List<Movie>> getPopularMovies() {
+    public Observable<PaginatedMovie> getPopularMovies() {
         return endpointClient.getPopularMovies();
     }
-    public Observable<List<Movie>> getTopRatedMovies() {
+    public Observable<PaginatedMovie> getTopRatedMovies() {
         return endpointClient.getPopularMovies();
     }
 }

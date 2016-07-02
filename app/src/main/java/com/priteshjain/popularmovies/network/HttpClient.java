@@ -14,6 +14,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class HttpClient {
@@ -44,6 +45,7 @@ public class HttpClient {
 
     Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(Constant.BASE_URL)
+            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson))
             .client(httpClient.build())
             .build();
