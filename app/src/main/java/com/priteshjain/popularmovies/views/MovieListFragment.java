@@ -1,9 +1,11 @@
 package com.priteshjain.popularmovies.views;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -76,7 +78,11 @@ public class MovieListFragment extends Fragment implements IMoviesListingView {
 
     @Override
     public void onMovieClicked(Movie movie) {
-        Log.i(TAG, "onMovieClicked: " + movie.getId());
+        MovieDetailFragment movieDetailFragment = MovieDetailFragment.getInstance(movie);
+        ((AppCompatActivity) mContext).getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_listing, movieDetailFragment, MovieDetailFragment.TAG)
+                .commit();
+
     }
 
     @Override

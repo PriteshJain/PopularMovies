@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.github.florent37.picassopalette.PicassoPalette;
 import com.priteshjain.popularmovies.R;
 import com.priteshjain.popularmovies.models.Movie;
 import com.priteshjain.popularmovies.presenters.IMoviesListingView;
@@ -37,11 +38,14 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.View
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.itemView.setOnClickListener(holder);
         holder.mMovie = mMovies.get(position);
         holder.mMovieName.setText(holder.mMovie.getTitle());
-        Picasso.with(mContext).load(holder.mMovie.getThumbPosterUrl()).into(holder.mMoviePoster);
+        Picasso.with(mContext).load(holder.mMovie.getMediumPosterUrl()).into(holder.mMoviePoster,
+                PicassoPalette.with(holder.mMovie.getMediumPosterUrl(), holder.mMoviePoster)
+                        .use(PicassoPalette.Profile.VIBRANT)
+                        .intoBackground(holder.mTitleBackground, PicassoPalette.Swatch.RGB));
     }
 
     @Override
