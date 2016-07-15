@@ -97,6 +97,10 @@ public class Movie extends BaseModel {
         return Constant.BASE_POSTER_URL + ImageSize.THUMB.getSize() + posterPath;
     }
 
+    public String getMediumPosterUrl(){
+        return Constant.BASE_POSTER_URL + ImageSize.MEDIUM.getSize() + posterPath;
+    }
+
     public String getLargePosterUrl(){
         return Constant.BASE_POSTER_URL + ImageSize.LARGE.getSize() + posterPath;
     }
@@ -107,6 +111,9 @@ public class Movie extends BaseModel {
 
     public String getBackdropPath() {
         return backdropPath;
+    }
+    public String getBackdropUrl() {
+        return Constant.BASE_POSTER_URL + ImageSize.XLARGE.getSize() + backdropPath;
     }
 
     public void setBackdropPath(String backdropPath) {

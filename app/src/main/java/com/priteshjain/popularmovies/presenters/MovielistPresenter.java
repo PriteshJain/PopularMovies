@@ -1,12 +1,7 @@
 package com.priteshjain.popularmovies.presenters;
 
-import android.content.Context;
-
-import com.priteshjain.popularmovies.models.Movie;
 import com.priteshjain.popularmovies.models.PaginatedMovie;
 import com.priteshjain.popularmovies.network.RequestHandler;
-
-import java.util.List;
 
 import rx.Subscriber;
 import rx.Subscription;
@@ -14,27 +9,24 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 import rx.schedulers.Schedulers;
 
-/**
- * Created by priteshjain on 28/06/16.
- */
 public class MovieListPresenter extends BasePresenter {
     private IMoviesListingView mMoviesView;
-    private Context mContext;
     private Subscription mSubscription;
+    private String currentPage;
 
-    public MovieListPresenter(IMoviesListingView view, Context context) {
+    public MovieListPresenter(IMoviesListingView view) {
         mMoviesView = view;
-        this.mContext = context;
     }
 
-    public void displayMovies(){
+    public void displayMovies(String currentPage){
+        this.currentPage = currentPage;
         fetchMovies();
     }
 
     public Subscription fetchMovies() {
         RequestHandler requestHandler = new RequestHandler();
 
-        mSubscription = requestHandler.getPopularMovies()
+        mSubscription = requestHandler.getPopularMovies(currentPage)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(new Action0() {
@@ -62,4 +54,7 @@ public class MovieListPresenter extends BasePresenter {
         return mSubscription;
     }
 
+    public void stopFetchingMovies(){
+        mSubscription.unsubscribe();
+    }
 }

@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinatorLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackgroundLight"
+    android:fitsSystemWindows="true"
+    >
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipChildren="false"
+        android:fitsSystemWindows="true"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapsingToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleMarginBottom="32dp"
+            app:expandedTitleMarginEnd="64dp"
+            app:expandedTitleMarginStart="48dp"
+            app:expandedTitleTextAppearance="@style/TextAppearance.AppCompat.Title"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+            app:titleEnabled="false">
+
+            <ImageView
+                android:id="@+id/cover_poster"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:background="@color/colorPrimary"
+                android:fitsSystemWindows="true"
+                android:scaleType="centerCrop"
+                app:layout_collapseMode="parallax"
+                tools:background="@color/colorWhite"/>
+
+            <View
+                android:id="@+id/movie_header"
+                android:layout_width="fill_parent"
+                android:layout_height="60dip"
+                android:layout_gravity="bottom"
+                android:background="@color/colorPrimary"
+                android:fitsSystemWindows="true"/>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:orientation="horizontal"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp">
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center|left"
+                    android:layout_marginLeft="8dip"
+                    android:layout_marginBottom="8dp"
+                    android:background="@color/colorWhite">
+
+                    <ImageView
+                        android:id="@+id/movie_poster"
+                        android:layout_width="85dp"
+                        android:layout_height="110dp"
+
+                        android:background="@color/colorPrimary"
+                        android:scaleType="centerCrop"
+                        tools:background="@color/colorWhite"/>
+
+                </FrameLayout>
+
+                <LinearLayout
+                    android:id="@+id/movie_info_wrapper"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="8dp"
+                    android:orientation="vertical"
+                    android:paddingLeft="8.0dip">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/movie_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="60dip"
+                            android:gravity="bottom"
+                            android:marqueeRepeatLimit="marquee_forever"
+                            android:maxLines="2"
+                            android:paddingBottom="2dip"
+                            android:scrollHorizontally="true"
+                            android:text="Deadpool Deadpool Deadpool Deadpool"
+                            android:textColor="@color/colorWhite"
+                            android:layout_toLeftOf="@+id/movie_rating"
+                            android:textSize="18sp"/>
+
+                        <TextView
+                            android:id="@+id/movie_rating"
+                            android:layout_width="wrap_content"
+                            android:layout_height="35dip"
+                            android:ellipsize="marquee"
+                            android:gravity="right|bottom"
+                            android:layout_alignParentRight="true"
+                            android:marqueeRepeatLimit="marquee_forever"
+                            android:maxLines="1"
+                            android:paddingBottom="2dip"
+                            android:scrollHorizontally="true"
+                            android:singleLine="true"
+                            android:text="2.2/10"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="18sp"/>
+                    </RelativeLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:titleMarginTop="15dp"
+                />
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+        <!--<android.support.design.widget.TabLayout-->
+        <!--android:id="@+id/tab_layout"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="?attr/actionBarSize"-->
+        <!--android:layout_gravity="bottom"-->
+        <!--android:background="@color/colorPrimary"-->
+        <!--app:tabIndicatorColor="@color/colorAccent"/>-->
+
+    </android.support.design.widget.AppBarLayout>
+
+    <!--<FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:id="@+id/dummyView"
+        android:background="@android:color/transparent"
+        app:layout_anchor="@+id/appbarLayout"
+        app:layout_anchorGravity="bottom" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:id="@+id/shadowView"
+        android:background="@drawable/dropshadow"
+        app:layout_anchor="@+id/dummyView"
+        app:layout_anchorGravity="bottom" />-->
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/scrolling_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/movie_release_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="sans-serif-light"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/secondaryText"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="32dp"
+                android:text="@string/summary"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textColor="@color/primaryText"/>
+
+            <TextView
+                android:id="@+id/movie_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:fontFamily="sans-serif-light"
+                android:lineSpacingMultiplier="1.2"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/secondaryText"/>
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.design.widget.CoordinatorLayout>
