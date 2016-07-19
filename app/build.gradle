@@ -10,6 +10,7 @@ android {
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
+        buildConfigField("String", "API_KEY", TMDB_API_KEY)
     }
     buildTypes {
         release {
@@ -24,4 +25,17 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:24.0.0'
     compile 'com.android.support:support-v4:24.0.0'
+    compile 'com.google.code.gson:gson:2.6.2'
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    compile 'io.reactivex:rxjava:1.1.6'
+    compile 'com.android.support:design:24.0.0'
+    compile 'com.github.lsjwzh.RecyclerViewPager:lib:v1.1.0'
+    compile 'com.github.lsjwzh.RecyclerViewPager:tablayoutsupport:v1.1.0'
+    compile 'io.reactivex:rxandroid:1.2.1'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+    compile 'com.android.support:recyclerview-v7:24.0.0'
+    compile 'com.android.support:cardview-v7:24.0.0'
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.github.florent37:picassopalette:2.0.0'
 }
