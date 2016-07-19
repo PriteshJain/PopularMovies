@@ -1,8 +1,8 @@
 package com.priteshjain.popularmovies.views;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -12,9 +12,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.priteshjain.popularmovies.R;
 import com.priteshjain.popularmovies.adapters.MovieListAdapter;
+import com.priteshjain.popularmovies.constants.Constant;
 import com.priteshjain.popularmovies.models.Movie;
 import com.priteshjain.popularmovies.presenters.IMoviesListingView;
 import com.priteshjain.popularmovies.presenters.MovieListPresenter;
@@ -31,7 +33,9 @@ public class MovieListFragment extends Fragment implements IMoviesListingView {
     private Context mContext;
     private MovieListAdapter mMovieListAdapter;
     private List<Movie> mMovies = new ArrayList<>(20);
+    private Constant.MovieListType mMovieListType;
     private MovieListPresenter mMovieListPresenter;
+    private ProgressBar mProgressbar;
     private Subscription mMoviesSubscription;
     View rootView;
 
@@ -46,13 +50,24 @@ public class MovieListFragment extends Fragment implements IMoviesListingView {
         // Required empty public constructor
     }
 
+    public static MovieListFragment getInstance(@NonNull Constant.MovieListType tabName)
+    {
+        Bundle args = new Bundle();
+        args.putString(Constant.TABITEM, tabName.name());
+        MovieListFragment movieListFragment = new MovieListFragment();
+        movieListFragment.setArguments(args);
+        return movieListFragment;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         mContext = getContext();
         mMovieListAdapter = new MovieListAdapter(mMovies, mContext, this);
-        mMovieListPresenter = new MovieListPresenter(this);
+        String tabName = getArguments().getString(Constant.TABITEM);
+        mMovieListType = Constant.MovieListType.getByName(tabName);
+        mMovieListPresenter = new MovieListPresenter(this, mMovieListType);
         setHasOptionsMenu(true);
     }
 
@@ -80,7 +95,8 @@ public class MovieListFragment extends Fragment implements IMoviesListingView {
     public void onMovieClicked(Movie movie) {
         MovieDetailFragment movieDetailFragment = MovieDetailFragment.getInstance(movie);
         ((AppCompatActivity) mContext).getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_listing, movieDetailFragment, MovieDetailFragment.TAG)
+                .replace(R.id.fragment_listing, movieDetailFragment)
+                .addToBackStack(MovieDetailFragment.TAG)
                 .commit();
 
     }
@@ -98,10 +114,12 @@ public class MovieListFragment extends Fragment implements IMoviesListingView {
     @Override
     public void loadingComplete() {
         Log.i(TAG, "loadingComplete: ");
+        mProgressbar.setVisibility(View.INVISIBLE);
     }
 
     public void initLayout(){
         RecyclerView moviesListing = (RecyclerView) rootView.findViewById(R.id.movies_list);
+        mProgressbar = (ProgressBar) rootView.findViewById(R.id.progress_bar);
         moviesListing.setHasFixedSize(true);
         int columns = 2;
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), columns);
