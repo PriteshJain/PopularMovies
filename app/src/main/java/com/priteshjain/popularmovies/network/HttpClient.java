@@ -7,8 +7,11 @@ import com.priteshjain.popularmovies.BuildConfig;
 import com.priteshjain.popularmovies.constants.ApiEndpoint;
 import com.priteshjain.popularmovies.constants.Constant;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.UUID;
 
+import okhttp3.Cache;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -19,12 +22,31 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class HttpClient {
-    Gson gson = new GsonBuilder()
+
+    private static final Interceptor rewriteCacheControlHeader = new Interceptor() {
+        @Override public Response intercept(Interceptor.Chain chain) throws IOException {
+            Request originalRequest = chain.request();
+            Request.Builder request = originalRequest.newBuilder();
+            Response response = chain.proceed(request.build());
+            return response.newBuilder()
+                    .removeHeader("Pragma")
+                    .removeHeader("Cache-Control")
+                    .header("Cache-Control", String.format("max-age=%d", 600))
+                    .build();
+        }
+    };
+
+    static final Gson gson = new GsonBuilder()
             .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
             .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
             .create();
 
-    OkHttpClient.Builder httpClient =
+    static final File cacheDir = new File(System.getProperty("java.io.tmpdir"), UUID.randomUUID().toString());
+    static final int cacheSize = 10 * 1024 * 1024; // 10 MiB
+    static final Cache cache = new Cache(cacheDir, cacheSize);
+
+
+    static final OkHttpClient.Builder httpClient =
             new OkHttpClient.Builder().addInterceptor(new Interceptor() {
                 @Override
                 public Response intercept(Chain chain) throws IOException {
@@ -43,7 +65,8 @@ public class HttpClient {
                     Request request = requestBuilder.build();
                     return chain.proceed(request);
                 }
-            });
+            }).cache(cache)
+            .addInterceptor(rewriteCacheControlHeader);
 
     Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(Constant.BASE_URL)
@@ -55,4 +78,7 @@ public class HttpClient {
     public ApiEndpoint getClient() {
         return retrofit.create(ApiEndpoint.class);
     }
+
+
+
 }

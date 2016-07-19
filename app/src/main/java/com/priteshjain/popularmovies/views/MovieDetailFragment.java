@@ -8,32 +8,19 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.github.florent37.picassopalette.PicassoPalette;
 import com.priteshjain.popularmovies.R;
-import com.priteshjain.popularmovies.adapters.MovieListAdapter;
 import com.priteshjain.popularmovies.constants.Constant;
 import com.priteshjain.popularmovies.models.Movie;
 import com.priteshjain.popularmovies.presenters.IMoviesDetailView;
-import com.priteshjain.popularmovies.presenters.IMoviesListingView;
 import com.priteshjain.popularmovies.presenters.MovieDetailPresenter;
-import com.priteshjain.popularmovies.presenters.MovieListPresenter;
-import com.priteshjain.popularmovies.util.EndlessRecyclerOnScrollListener;
 import com.squareup.picasso.Picasso;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import rx.Subscription;
 
 public class MovieDetailFragment extends Fragment implements IMoviesDetailView {
     public static String TAG = "MovieDetailFragment";
@@ -76,7 +63,7 @@ public class MovieDetailFragment extends Fragment implements IMoviesDetailView {
         mContext = getContext();
         mMovieDetailPresenter = new MovieDetailPresenter(this);
         mMovie = (Movie) getArguments().get(Constant.MOVIE);
-        setHasOptionsMenu(false);
+
     }
 
     @Nullable
@@ -109,8 +96,14 @@ public class MovieDetailFragment extends Fragment implements IMoviesDetailView {
 
     @Override
     public void showDetails(Movie movie) {
-        Picasso.with(mContext).load(mMovie.getBackdropUrl()).into(mMovieCover);
-        Picasso.with(mContext).load(mMovie.getMediumPosterUrl()).into(mMoviePoster);
+        Picasso.with(mContext)
+                .load(mMovie.getBackdropUrl())
+                .placeholder( R.drawable.loading )
+                .into(mMovieCover);
+        Picasso.with(mContext)
+                .load(mMovie.getMediumPosterUrl())
+                .placeholder( R.drawable.loading )
+                .into(mMoviePoster);
         mMovieTitle.setText(movie.getTitle());
         mMovieReleaseDate.setText(String.format(getString(R.string.release_date), movie.getReleaseDate()));
         mMovieRatingmRating.setText(String.format(getString(R.string.rating), String.valueOf(movie.getVoteAverage())));
@@ -120,7 +113,6 @@ public class MovieDetailFragment extends Fragment implements IMoviesDetailView {
     private void setToolbar()
     {
         CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) rootView.findViewById(R.id.collapsingToolbar);
-
         collapsingToolbarLayout.setContentScrimColor(getResources().getColor(R.color.colorPrimary));
         collapsingToolbarLayout.setTitle(mMovie.getTitle());
         collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedToolbar);
@@ -133,14 +125,12 @@ public class MovieDetailFragment extends Fragment implements IMoviesDetailView {
             ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 
             ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
-            if (actionBar != null)
-            {
+            if (actionBar != null) {
+                setHasOptionsMenu(true);
+                actionBar.setHomeButtonEnabled(true);
                 actionBar.setDisplayHomeAsUpEnabled(true);
+
             }
-        } else
-        {
-            // Don't inflate. Tablet is in landscape mode.
         }
     }
-
 }
