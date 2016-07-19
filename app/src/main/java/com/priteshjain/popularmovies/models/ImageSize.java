@@ -1,8 +1,5 @@
 package com.priteshjain.popularmovies.models;
 
-/**
- * Created by priteshjain on 28/06/16.
- */
 public enum ImageSize {
     TINY("w92"),
     THUMB("w154"),

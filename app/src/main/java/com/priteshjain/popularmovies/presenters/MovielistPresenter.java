@@ -1,5 +1,6 @@
 package com.priteshjain.popularmovies.presenters;
 
+import com.priteshjain.popularmovies.constants.Constant;
 import com.priteshjain.popularmovies.models.PaginatedMovie;
 import com.priteshjain.popularmovies.network.RequestHandler;
 
@@ -13,9 +14,11 @@ public class MovieListPresenter extends BasePresenter {
     private IMoviesListingView mMoviesView;
     private Subscription mSubscription;
     private String currentPage;
+    private Constant.MovieListType mMovieListType;
 
-    public MovieListPresenter(IMoviesListingView view) {
+    public MovieListPresenter(IMoviesListingView view, Constant.MovieListType movieListType) {
         mMoviesView = view;
+        mMovieListType = movieListType;
     }
 
     public void displayMovies(String currentPage){
@@ -26,7 +29,7 @@ public class MovieListPresenter extends BasePresenter {
     public Subscription fetchMovies() {
         RequestHandler requestHandler = new RequestHandler();
 
-        mSubscription = requestHandler.getPopularMovies(currentPage)
+        mSubscription = requestHandler.getMovies(mMovieListType, currentPage)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(new Action0() {
