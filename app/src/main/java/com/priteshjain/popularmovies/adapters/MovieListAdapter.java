@@ -39,7 +39,8 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.View
         holder.mMovie = mMovies.get(position);
         holder.mMovieName.setText(holder.mMovie.getTitle());
         Picasso.with(mContext).load(holder.mMovie.getMediumPosterUrl())
-                .placeholder( R.drawable.loading )
+                .placeholder( R.drawable.progress_animation )
+                .fit().centerCrop()
                 .into(holder.mMoviePoster,
                 PicassoPalette.with(holder.mMovie.getMediumPosterUrl(), holder.mMoviePoster)
                         .use(PicassoPalette.Profile.VIBRANT)

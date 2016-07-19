@@ -5,7 +5,7 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
 
     <string name="summary">Summary</string>
-    <string name="release_date">Release Date: %s</string>
+    <string name="release_date">Release Date:</string>
     <string name="rating">%s/10</string>
 
 </resources>
