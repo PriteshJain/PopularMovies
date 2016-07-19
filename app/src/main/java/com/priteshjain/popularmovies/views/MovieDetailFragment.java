@@ -98,14 +98,16 @@ public class MovieDetailFragment extends Fragment implements IMoviesDetailView {
     public void showDetails(Movie movie) {
         Picasso.with(mContext)
                 .load(mMovie.getBackdropUrl())
-                .placeholder( R.drawable.loading )
+                .fit().centerCrop()
+                .placeholder( R.drawable.progress_animation )
                 .into(mMovieCover);
         Picasso.with(mContext)
                 .load(mMovie.getMediumPosterUrl())
-                .placeholder( R.drawable.loading )
+                .fit().centerCrop()
+                .placeholder( R.drawable.progress_animation )
                 .into(mMoviePoster);
         mMovieTitle.setText(movie.getTitle());
-        mMovieReleaseDate.setText(String.format(getString(R.string.release_date), movie.getReleaseDate()));
+        mMovieReleaseDate.setText(movie.getReleaseDate());
         mMovieRatingmRating.setText(String.format(getString(R.string.rating), String.valueOf(movie.getVoteAverage())));
         mMovieOverview.setText(movie.getOverview());
     }

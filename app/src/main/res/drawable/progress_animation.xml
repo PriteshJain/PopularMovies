@@ -2,5 +2,5 @@
 
 <animated-rotate xmlns:android="http://schemas.android.com/apk/res/android"
                  android:drawable="@drawable/progress_loading"
-                 android:pivotX="10%"
-                 android:pivotY="10%"/>
+                 android:pivotX="50%"
+                 android:pivotY="50%"/>
