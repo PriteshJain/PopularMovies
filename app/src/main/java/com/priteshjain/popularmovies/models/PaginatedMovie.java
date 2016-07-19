@@ -5,9 +5,6 @@ import android.os.Parcel;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by priteshjain on 02/07/16.
- */
 public class PaginatedMovie extends BaseModel {
     private String page;
     private List<Movie> results;

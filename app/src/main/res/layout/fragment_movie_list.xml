@@ -4,6 +4,15 @@
              android:layout_height="match_parent"
              tools:context=".views.MoviesActivity">
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="?android:progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/movies_list"
+        android:layout_centerHorizontal="true"
+        />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/movies_list"
         android:scrollbars="vertical"
