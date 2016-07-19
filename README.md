@@ -1,1 +1,1 @@
-Replace `TMDB_API_KEY` in `app/build.gradle` with your themoviedb.org API key.
+Assign`TMDB_API_KEY` in `gradle.properties` with your themoviedb.org API key.
