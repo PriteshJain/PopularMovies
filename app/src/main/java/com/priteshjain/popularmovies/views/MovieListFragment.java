@@ -25,18 +25,16 @@ import com.priteshjain.popularmovies.util.EndlessRecyclerOnScrollListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import rx.Subscription;
-
 public class MovieListFragment extends Fragment implements IMoviesListingView {
     @SuppressWarnings("WeakerAccess")
     public static final String TAG = "MovieListFragment";
 
     private Context mContext;
     private MovieListAdapter mMovieListAdapter;
-    private final List<Movie> mMovies = new ArrayList<Movie>();
+    private ArrayList<Movie> mMovies = new ArrayList<Movie>();
     private MovieListPresenter mMovieListPresenter;
     private ProgressBar mProgressbar;
-    private Subscription mMoviesSubscription;
+    private String mCurrentPage = "1";
     private View rootView;
 
     public MovieListFragment()
@@ -73,14 +71,19 @@ public class MovieListFragment extends Fragment implements IMoviesListingView {
         return rootView;
     }
 
+
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mMovieListPresenter.displayMovies("1");
+        mMovieListPresenter.displayMovies(mCurrentPage);
     }
 
     @Override
-    public void listMovies(List<Movie> movies) {
+    public void listMovies(List<Movie> movies, String currentPage) {
+        if(currentPage.equals("1")) {
+            mMovies.clear();
+        }
         mMovies.addAll(movies);
         mMovieListAdapter.notifyDataSetChanged();
     }
@@ -122,8 +125,9 @@ public class MovieListFragment extends Fragment implements IMoviesListingView {
         moviesListing.addOnScrollListener(new EndlessRecyclerOnScrollListener(gridLayoutManager) {
             @Override
             public void onLoadMore(int current_page) {
-                Log.i(TAG, "onLoadMore: " + current_page);
-                mMovieListPresenter.displayMovies(current_page + "");
+                mCurrentPage = current_page + "";
+                Log.i(TAG, "onLoadMore: " + mCurrentPage);
+                mMovieListPresenter.displayMovies(mCurrentPage);
             }
         });
     }

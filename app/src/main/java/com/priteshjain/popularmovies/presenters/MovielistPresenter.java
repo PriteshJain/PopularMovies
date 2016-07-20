@@ -13,7 +13,7 @@ import rx.schedulers.Schedulers;
 public class MovieListPresenter extends BasePresenter {
     private IMoviesListingView mMoviesView;
     private Subscription mSubscription;
-    private String currentPage;
+    private String mCurrentPage;
     private Constant.MovieListType mMovieListType;
 
     public MovieListPresenter(IMoviesListingView view, Constant.MovieListType movieListType) {
@@ -22,14 +22,14 @@ public class MovieListPresenter extends BasePresenter {
     }
 
     public void displayMovies(String currentPage){
-        this.currentPage = currentPage;
+        this.mCurrentPage = currentPage;
         fetchMovies();
     }
 
     public Subscription fetchMovies() {
         RequestHandler requestHandler = new RequestHandler();
 
-        mSubscription = requestHandler.getMovies(mMovieListType, currentPage)
+        mSubscription = requestHandler.getMovies(mMovieListType, mCurrentPage)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(new Action0() {
@@ -51,7 +51,7 @@ public class MovieListPresenter extends BasePresenter {
 
                     @Override
                     public void onNext(PaginatedMovie paginatedMovie) {
-                        mMoviesView.listMovies(paginatedMovie.getResults());
+                        mMoviesView.listMovies(paginatedMovie.getResults(), mCurrentPage);
                     }
                 });
         return mSubscription;
