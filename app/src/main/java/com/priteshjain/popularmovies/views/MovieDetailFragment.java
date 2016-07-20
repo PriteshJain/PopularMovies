@@ -1,6 +1,8 @@
 package com.priteshjain.popularmovies.views;
 
 import android.content.Context;
+import android.databinding.BindingAdapter;
+import android.databinding.DataBindingUtil;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -15,28 +17,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.priteshjain.popularmovies.R;
 import com.priteshjain.popularmovies.constants.Constant;
+import com.priteshjain.popularmovies.databinding.FragmentMovieDetailBinding;
 import com.priteshjain.popularmovies.models.Movie;
-import com.priteshjain.popularmovies.presenters.IMoviesDetailView;
-import com.priteshjain.popularmovies.presenters.MovieDetailPresenter;
 import com.squareup.picasso.Picasso;
 
 import static android.R.attr.id;
 
-public class MovieDetailFragment extends Fragment implements IMoviesDetailView {
+public class MovieDetailFragment extends Fragment {
     public static final String TAG = "MovieDetailFragment";
 
     private Context mContext;
-    private MovieDetailPresenter mMovieDetailPresenter;
-    private ImageView mMovieCover;
-    private ImageView mMoviePoster;
-    private TextView mMovieTitle;
-    private TextView mMovieReleaseDate;
-    private TextView mMovieRating;
-    private TextView mMovieOverview;
+    private FragmentMovieDetailBinding fragmentMovieDetailBinding;
     private View rootView;
     private Movie mMovie;
 
@@ -59,55 +53,23 @@ public class MovieDetailFragment extends Fragment implements IMoviesDetailView {
     {
         super.onCreate(savedInstanceState);
         mContext = getContext();
-        mMovieDetailPresenter = new MovieDetailPresenter(this);
         mMovie = (Movie) getArguments().get(Constant.MOVIE);
-
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_movie_detail, container, false);
+        fragmentMovieDetailBinding = DataBindingUtil.inflate(inflater , R.layout.fragment_movie_detail, container, false);
+        rootView = fragmentMovieDetailBinding.getRoot();
         setToolbar();
-        initLayout();
         return rootView;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        if (mMovie != null)
-        {
-            mMovieDetailPresenter.displayDetails(mMovie);
-        }
-    }
-
-
-    private void initLayout(){
-        mMovieCover = (ImageView) rootView.findViewById(R.id.cover_poster);
-        mMoviePoster = (ImageView) rootView.findViewById(R.id.movie_poster);
-        mMovieTitle = (TextView) rootView.findViewById(R.id.movie_title);
-        mMovieReleaseDate = (TextView) rootView.findViewById(R.id.movie_release_date);
-        mMovieRating = (TextView) rootView.findViewById(R.id.movie_rating);
-        mMovieOverview = (TextView) rootView.findViewById(R.id.movie_description);
-    }
-
-    @Override
-    public void showDetails(Movie movie) {
-        Picasso.with(mContext)
-                .load(mMovie.getBackdropUrl())
-                .fit().centerCrop()
-                .placeholder( R.drawable.progress_animation )
-                .into(mMovieCover);
-        Picasso.with(mContext)
-                .load(mMovie.getMediumPosterUrl())
-                .fit().centerCrop()
-                .placeholder( R.drawable.progress_animation )
-                .into(mMoviePoster);
-        mMovieTitle.setText(movie.getTitle());
-        mMovieReleaseDate.setText(movie.getReleaseDate());
-        mMovieRating.setText(String.format(getString(R.string.rating), String.valueOf(movie.getVoteAverage())));
-        mMovieOverview.setText(movie.getOverview());
+        fragmentMovieDetailBinding.setMovie(mMovie);
+        fragmentMovieDetailBinding.notifyChange();
     }
 
     private void setToolbar()
@@ -138,5 +100,14 @@ public class MovieDetailFragment extends Fragment implements IMoviesDetailView {
 
             }
         }
+    }
+
+    @BindingAdapter({"android:src"})
+    public static void loadImage(ImageView view, String url) {
+        Picasso.with(view.getContext())
+                .load(url)
+                .fit().centerCrop()
+                .placeholder( R.drawable.progress_animation )
+                .into(view);
     }
 }

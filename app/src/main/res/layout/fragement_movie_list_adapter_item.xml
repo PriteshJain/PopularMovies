@@ -35,6 +35,6 @@
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:textColor="@android:color/white"
-        android:textSize="12sp"/>
+        android:textSize="@dimen/lmedium_sp"/>
 
 </FrameLayout>

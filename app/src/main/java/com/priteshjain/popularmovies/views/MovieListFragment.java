@@ -118,7 +118,7 @@ public class MovieListFragment extends Fragment implements IMoviesListingView {
         RecyclerView moviesListing = (RecyclerView) rootView.findViewById(R.id.movies_list);
         mProgressbar = (ProgressBar) rootView.findViewById(R.id.progress_bar);
         moviesListing.setHasFixedSize(true);
-        int columns = 2;
+        int columns = getResources().getInteger(R.integer.movies_columns);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), columns);
         moviesListing.setLayoutManager(gridLayoutManager);
         moviesListing.setAdapter(mMovieListAdapter);

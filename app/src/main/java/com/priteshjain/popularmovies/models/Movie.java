@@ -124,6 +124,10 @@ public class Movie extends BaseModel {
         return voteAverage;
     }
 
+    public String getRating() {
+        return voteAverage  +  "/10";
+    }
+
     public void setVoteAverage(double voteAverage) {
         this.voteAverage = voteAverage;
     }

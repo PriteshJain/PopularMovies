@@ -36,6 +36,7 @@
     <dimen name="xsmall_sp" tools:ignore="UnusedResources">2sp</dimen>
     <dimen name="small_sp" tools:ignore="UnusedResources">4sp</dimen>
     <dimen name="medium_sp" tools:ignore="UnusedResources">8sp</dimen>
+    <dimen name="lmedium_sp" tools:ignore="UnusedResources">12sp</dimen>
     <dimen name="large_sp" tools:ignore="UnusedResources">16sp</dimen>
     <dimen name="mlarge_sp" tools:ignore="UnusedResources">24sp</dimen>
     <dimen name="xlarge_sp" tools:ignore="UnusedResources">32sp</dimen>
