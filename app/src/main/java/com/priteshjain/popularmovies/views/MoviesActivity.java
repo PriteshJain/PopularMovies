@@ -15,7 +15,7 @@ public class MoviesActivity extends BaseActivity {
         if (savedInstanceState == null)
         {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_listing, new MovieListManagerFragment())
+                    .replace(R.id.fragment_listing, MovieListManagerFragment.getInstance())
                     .commit();
         }
 

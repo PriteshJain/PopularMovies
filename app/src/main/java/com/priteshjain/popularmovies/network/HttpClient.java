@@ -21,7 +21,7 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class HttpClient {
+class HttpClient {
 
     private static final Interceptor rewriteCacheControlHeader = new Interceptor() {
         @Override public Response intercept(Interceptor.Chain chain) throws IOException {
@@ -36,17 +36,17 @@ public class HttpClient {
         }
     };
 
-    static final Gson gson = new GsonBuilder()
+    private static final Gson gson = new GsonBuilder()
             .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
             .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
             .create();
 
-    static final File cacheDir = new File(System.getProperty("java.io.tmpdir"), UUID.randomUUID().toString());
-    static final int cacheSize = 10 * 1024 * 1024; // 10 MiB
-    static final Cache cache = new Cache(cacheDir, cacheSize);
+    private static final File cacheDir = new File(System.getProperty("java.io.tmpdir"), UUID.randomUUID().toString());
+    private static final int cacheSize = 10 * 1024 * 1024; // 10 MiB
+    private static final Cache cache = new Cache(cacheDir, cacheSize);
 
 
-    static final OkHttpClient.Builder httpClient =
+    private static final OkHttpClient.Builder httpClient =
             new OkHttpClient.Builder().addInterceptor(new Interceptor() {
                 @Override
                 public Response intercept(Chain chain) throws IOException {
@@ -68,7 +68,7 @@ public class HttpClient {
             }).cache(cache)
             .addInterceptor(rewriteCacheControlHeader);
 
-    Retrofit retrofit = new Retrofit.Builder()
+    private final Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(Constant.BASE_URL)
             .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson))

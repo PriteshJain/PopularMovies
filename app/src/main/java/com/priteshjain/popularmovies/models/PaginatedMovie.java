@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PaginatedMovie extends BaseModel {
-    private String page;
-    private List<Movie> results;
+    private final String page;
+    private final List<Movie> results;
 
     public static final Creator<PaginatedMovie> CREATOR = new Creator<PaginatedMovie>() {
         @Override
@@ -21,9 +21,9 @@ public class PaginatedMovie extends BaseModel {
         }
     };
 
-    public PaginatedMovie(Parcel in) {
+    private PaginatedMovie(Parcel in) {
         page = in.readString();
-        results = new ArrayList<Movie>();
+        results = new ArrayList<>();
         in.readList(results, null);
     }
 

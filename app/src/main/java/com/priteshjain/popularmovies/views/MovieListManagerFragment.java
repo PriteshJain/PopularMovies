@@ -2,7 +2,6 @@ package com.priteshjain.popularmovies.views;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -18,7 +17,6 @@ import com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager;
 import com.lsjwzh.widget.recyclerviewpager.TabLayoutSupport;
 import com.priteshjain.popularmovies.R;
 import com.priteshjain.popularmovies.adapters.FragmentsAdapter;
-import com.priteshjain.popularmovies.constants.Constant;
 
 public class MovieListManagerFragment extends Fragment {
     public static String TAG = "MovieListManagerFragment";
@@ -26,26 +24,18 @@ public class MovieListManagerFragment extends Fragment {
     private Context mContext;
     private RecyclerViewPager mRecyclerView;
     private FragmentsAdapter mAdapter;
-    View rootView;
-
-    @Override
-    public void onAttach(Context context)
-    {
-        super.onAttach(context);
-    }
+    private View rootView;
 
     public MovieListManagerFragment()
     {
         // Required empty public constructor
     }
 
-    public static MovieListManagerFragment getInstance(@NonNull Constant.MovieListType tabName)
+    public static MovieListManagerFragment getInstance()
     {
         Bundle args = new Bundle();
-        args.putString(Constant.TABITEM, tabName.name());
-        MovieListManagerFragment movieListFragment = new MovieListManagerFragment();
-        movieListFragment.setArguments(args);
-        return movieListFragment;
+        MovieListManagerFragment movieListManagerFragment = new MovieListManagerFragment();
+        return movieListManagerFragment;
     }
 
     @Override
@@ -66,19 +56,13 @@ public class MovieListManagerFragment extends Fragment {
         return rootView;
     }
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-    }
-
-
     private void initTabLayout() {
         //给TabLayout增加Tab, 并关联ViewPager
         TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.tabs);
         TabLayoutSupport.setupWithViewPager(tabLayout, mRecyclerView, mAdapter);
     }
 
-    protected void initViewPager() {
+    private void initViewPager() {
         mRecyclerView = (RecyclerViewPager) rootView.findViewById(R.id.movies_list_pager);
         LinearLayoutManager layout = new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL,
                 false);

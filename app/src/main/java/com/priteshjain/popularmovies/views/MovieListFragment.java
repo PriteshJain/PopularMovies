@@ -28,22 +28,16 @@ import java.util.List;
 import rx.Subscription;
 
 public class MovieListFragment extends Fragment implements IMoviesListingView {
-    public static String TAG = "MovieListFragment";
+    @SuppressWarnings("WeakerAccess")
+    public static final String TAG = "MovieListFragment";
 
     private Context mContext;
     private MovieListAdapter mMovieListAdapter;
-    private List<Movie> mMovies = new ArrayList<>(20);
-    private Constant.MovieListType mMovieListType;
+    private final List<Movie> mMovies = new ArrayList<Movie>();
     private MovieListPresenter mMovieListPresenter;
     private ProgressBar mProgressbar;
     private Subscription mMoviesSubscription;
-    View rootView;
-
-    @Override
-    public void onAttach(Context context)
-    {
-        super.onAttach(context);
-    }
+    private View rootView;
 
     public MovieListFragment()
     {
@@ -53,7 +47,7 @@ public class MovieListFragment extends Fragment implements IMoviesListingView {
     public static MovieListFragment getInstance(@NonNull Constant.MovieListType tabName)
     {
         Bundle args = new Bundle();
-        args.putString(Constant.TABITEM, tabName.name());
+        args.putString(Constant.TAB_ITEM, tabName.name());
         MovieListFragment movieListFragment = new MovieListFragment();
         movieListFragment.setArguments(args);
         return movieListFragment;
@@ -65,9 +59,9 @@ public class MovieListFragment extends Fragment implements IMoviesListingView {
         super.onCreate(savedInstanceState);
         mContext = getContext();
         mMovieListAdapter = new MovieListAdapter(mMovies, mContext, this);
-        String tabName = getArguments().getString(Constant.TABITEM);
-        mMovieListType = Constant.MovieListType.getByName(tabName);
-        mMovieListPresenter = new MovieListPresenter(this, mMovieListType);
+        String tabName = getArguments().getString(Constant.TAB_ITEM);
+        Constant.MovieListType movieListType= Constant.MovieListType.getByName(tabName);
+        mMovieListPresenter = new MovieListPresenter(this, movieListType);
         setHasOptionsMenu(true);
     }
 
@@ -117,7 +111,7 @@ public class MovieListFragment extends Fragment implements IMoviesListingView {
         mProgressbar.setVisibility(View.INVISIBLE);
     }
 
-    public void initLayout(){
+    private void initLayout(){
         RecyclerView moviesListing = (RecyclerView) rootView.findViewById(R.id.movies_list);
         mProgressbar = (ProgressBar) rootView.findViewById(R.id.progress_bar);
         moviesListing.setHasFixedSize(true);

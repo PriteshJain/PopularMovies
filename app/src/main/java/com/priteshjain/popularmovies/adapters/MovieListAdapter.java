@@ -16,9 +16,9 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.ViewHolder> {
-    private List<Movie> mMovies;
+    private final List<Movie> mMovies;
     private Context mContext;
-    private IMoviesListingView mMoviesListingView;
+    private final IMoviesListingView mMoviesListingView;
 
     public MovieListAdapter(List<Movie> mMovies, Context context, IMoviesListingView moviesListingView) {
         this.mMovies = mMovies;
@@ -53,9 +53,9 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.View
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        public TextView mMovieName;
-        public ImageView mMoviePoster;
-        public View mTitleBackground;
+        public final TextView mMovieName;
+        public final ImageView mMoviePoster;
+        public final View mTitleBackground;
         public Movie mMovie;
 
         public ViewHolder(View itemView) {

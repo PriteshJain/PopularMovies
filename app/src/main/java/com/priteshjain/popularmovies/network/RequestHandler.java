@@ -7,7 +7,7 @@ import com.priteshjain.popularmovies.models.PaginatedMovie;
 import rx.Observable;
 
 public class RequestHandler {
-    ApiEndpoint endpointClient;
+    private final ApiEndpoint endpointClient;
 
     public RequestHandler(){
         endpointClient = new HttpClient().getClient();

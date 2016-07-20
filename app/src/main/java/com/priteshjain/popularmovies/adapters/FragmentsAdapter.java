@@ -12,7 +12,7 @@ import java.util.LinkedHashMap;
 import static com.priteshjain.popularmovies.constants.Constant.MovieListType;
 
 public class FragmentsAdapter extends FragmentStatePagerAdapter implements TabLayoutSupport.ViewPagerTabLayoutAdapter {
-    LinkedHashMap<Integer, Fragment> mFragmentCache = new LinkedHashMap<>();
+    private final LinkedHashMap<Integer, Fragment> mFragmentCache = new LinkedHashMap<>();
 
 
     public FragmentsAdapter(FragmentManager fm) {
@@ -33,10 +33,7 @@ public class FragmentsAdapter extends FragmentStatePagerAdapter implements TabLa
     @Override
     public void onDestroyItem(int position, Fragment fragment) {
         // onDestroyItem
-        while (mFragmentCache.size() > 5) {
-            Object[] keys = mFragmentCache.keySet().toArray();
-            mFragmentCache.remove(keys[0]);
-        }
+        mFragmentCache.remove(position);
     }
 
     @Override

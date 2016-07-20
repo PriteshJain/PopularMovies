@@ -38,7 +38,7 @@ public class Movie extends BaseModel {
         parcel.writeDouble(voteAverage);
     }
 
-    public Movie(Parcel in) {
+    private Movie(Parcel in) {
         id = in.readString();
         title = in.readString();
         originalTitle = in.readString();

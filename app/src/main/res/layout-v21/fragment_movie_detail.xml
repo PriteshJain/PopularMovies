@@ -6,9 +6,7 @@
     android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackgroundLight"
-    android:fitsSystemWindows="true"
-    >
+    android:fitsSystemWindows="true">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbarLayout"
@@ -67,60 +65,52 @@
                     <ImageView
                         android:id="@+id/movie_poster"
                         android:layout_width="85dp"
-                        android:elevation="@dimen/cardview_default_elevation"
                         android:layout_height="110dp"
                         android:background="@color/colorPrimary"
+                        android:elevation="@dimen/cardview_default_elevation"
                         android:scaleType="center"
                         tools:background="@drawable/white_shadow"/>
 
                 </FrameLayout>
 
-                <LinearLayout
-                    android:id="@+id/movie_info_wrapper"
-                    android:layout_width="fill_parent"
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
                     android:layout_marginBottom="8dp"
-                    android:orientation="vertical"
-                    android:paddingLeft="8.0dip">
+                    android:paddingLeft="8.0dip"
+                    android:paddingRight="8.0dip">
 
-                    <RelativeLayout
+                    <TextView
+                        android:id="@+id/movie_title"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="60dip"
+                        android:layout_toLeftOf="@+id/movie_rating"
+                        android:gravity="bottom"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:maxLines="2"
+                        android:paddingBottom="2dip"
+                        android:scrollHorizontally="true"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp"/>
 
-                        <TextView
-                            android:id="@+id/movie_title"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="60dip"
-                            android:layout_toLeftOf="@+id/movie_rating"
-                            android:gravity="bottom"
-                            android:marqueeRepeatLimit="marquee_forever"
-                            android:maxLines="2"
-                            android:paddingBottom="2dip"
-                            android:scrollHorizontally="true"
-                            android:text="Deadpool Deadpool Deadpool Deadpool"
-                            android:textColor="@color/colorWhite"
-                            android:textSize="18sp"/>
+                    <TextView
+                        android:id="@+id/movie_rating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dip"
+                        android:layout_alignParentRight="true"
+                        android:drawableLeft="@drawable/ic_grade_gold_24dp"
+                        android:ellipsize="marquee"
+                        android:gravity="right|center"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:maxLines="1"
+                        android:paddingBottom="2dip"
+                        android:scrollHorizontally="true"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp"/>
+                </RelativeLayout>
 
-                        <TextView
-                            android:id="@+id/movie_rating"
-                            android:layout_width="wrap_content"
-                            android:layout_height="35dip"
-                            android:layout_alignParentRight="true"
-                            android:ellipsize="marquee"
-                            android:gravity="right|center"
-                            android:marqueeRepeatLimit="marquee_forever"
-                            android:maxLines="1"
-                            android:paddingBottom="2dip"
-                            android:scrollHorizontally="true"
-                            android:singleLine="true"
-                            android:text="2.2/10"
-                            android:textColor="@color/colorWhite"
-                            android:textSize="18sp"/>
-                    </RelativeLayout>
-
-                </LinearLayout>
             </LinearLayout>
 
             <android.support.v7.widget.Toolbar

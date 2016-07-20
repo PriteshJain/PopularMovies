@@ -1,11 +1,13 @@
 package com.priteshjain.popularmovies.views;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -22,8 +24,10 @@ import com.priteshjain.popularmovies.presenters.IMoviesDetailView;
 import com.priteshjain.popularmovies.presenters.MovieDetailPresenter;
 import com.squareup.picasso.Picasso;
 
+import static android.R.attr.id;
+
 public class MovieDetailFragment extends Fragment implements IMoviesDetailView {
-    public static String TAG = "MovieDetailFragment";
+    public static final String TAG = "MovieDetailFragment";
 
     private Context mContext;
     private MovieDetailPresenter mMovieDetailPresenter;
@@ -31,16 +35,10 @@ public class MovieDetailFragment extends Fragment implements IMoviesDetailView {
     private ImageView mMoviePoster;
     private TextView mMovieTitle;
     private TextView mMovieReleaseDate;
-    private TextView mMovieRatingmRating;
+    private TextView mMovieRating;
     private TextView mMovieOverview;
-    View rootView;
-    Movie mMovie;
-
-    @Override
-    public void onAttach(Context context)
-    {
-        super.onAttach(context);
-    }
+    private View rootView;
+    private Movie mMovie;
 
     public static MovieDetailFragment getInstance(@NonNull Movie movie)
     {
@@ -85,12 +83,12 @@ public class MovieDetailFragment extends Fragment implements IMoviesDetailView {
     }
 
 
-    public void initLayout(){
+    private void initLayout(){
         mMovieCover = (ImageView) rootView.findViewById(R.id.cover_poster);
         mMoviePoster = (ImageView) rootView.findViewById(R.id.movie_poster);
         mMovieTitle = (TextView) rootView.findViewById(R.id.movie_title);
         mMovieReleaseDate = (TextView) rootView.findViewById(R.id.movie_release_date);
-        mMovieRatingmRating = (TextView) rootView.findViewById(R.id.movie_rating);
+        mMovieRating = (TextView) rootView.findViewById(R.id.movie_rating);
         mMovieOverview = (TextView) rootView.findViewById(R.id.movie_description);
     }
 
@@ -108,14 +106,19 @@ public class MovieDetailFragment extends Fragment implements IMoviesDetailView {
                 .into(mMoviePoster);
         mMovieTitle.setText(movie.getTitle());
         mMovieReleaseDate.setText(movie.getReleaseDate());
-        mMovieRatingmRating.setText(String.format(getString(R.string.rating), String.valueOf(movie.getVoteAverage())));
+        mMovieRating.setText(String.format(getString(R.string.rating), String.valueOf(movie.getVoteAverage())));
         mMovieOverview.setText(movie.getOverview());
     }
 
     private void setToolbar()
     {
         CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) rootView.findViewById(R.id.collapsingToolbar);
-        collapsingToolbarLayout.setContentScrimColor(getResources().getColor(R.color.colorPrimary));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            collapsingToolbarLayout.setContentScrimColor(ContextCompat.getColor(mContext, id));
+        } else {
+            collapsingToolbarLayout.setContentScrimColor(getResources().getColor(R.color.colorPrimary));
+        }
+
         collapsingToolbarLayout.setTitle(mMovie.getTitle());
         collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedToolbar);
         collapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.ExpandedToolbar);
