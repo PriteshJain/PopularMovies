@@ -70,9 +70,8 @@
                         android:layout_width="@dimen/fragment_movie_detail_poster_width"
                         android:layout_height="@dimen/fragment_movie_detail_poster_height"
                         android:contentDescription="@string/movie_poster"
-                        android:background="@color/colorPrimary"
-                        android:scaleType="center"
-                        tools:background="@drawable/white_shadow"/>
+                        android:layout_margin="@dimen/xsmall"
+                        android:scaleType="center"/>
 
                 </FrameLayout>
 
