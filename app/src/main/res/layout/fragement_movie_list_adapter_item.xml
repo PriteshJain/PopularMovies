@@ -1,14 +1,17 @@
 <FrameLayout
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/movie_container"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="320dp"
+    android:layout_height="@dimen/fragment_movie_list_item_height"
     android:layout_gravity="center"
     android:clickable="true"
-    android:layout_margin="1dp"
-    android:foreground="?attr/selectableItemBackground">
+    android:layout_margin="@dimen/margin_xsmall"
+    android:foreground="?attr/selectableItemBackground"
+    tools:ignore="UnusedResources">
 
     <ImageView
+        android:contentDescription="@string/movie_poster"
         android:id="@+id/movie_poster"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,7 +20,7 @@
     <View
         android:id="@+id/title_background"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="@dimen/xmlarge"
         android:layout_gravity="bottom"
         android:alpha="0.8"
         android:background="@color/colorPrimaryDark"
@@ -26,7 +29,7 @@
     <TextView
         android:id="@+id/movie_name"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="@dimen/xmlarge"
         android:layout_gravity="bottom"
         android:gravity="center"
         android:paddingLeft="@dimen/activity_horizontal_margin"

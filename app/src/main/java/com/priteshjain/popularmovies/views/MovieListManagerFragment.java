@@ -31,11 +31,9 @@ public class MovieListManagerFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static MovieListManagerFragment getInstance()
+    static MovieListManagerFragment getInstance()
     {
-        Bundle args = new Bundle();
-        MovieListManagerFragment movieListManagerFragment = new MovieListManagerFragment();
-        return movieListManagerFragment;
+        return new MovieListManagerFragment();
     }
 
     @Override

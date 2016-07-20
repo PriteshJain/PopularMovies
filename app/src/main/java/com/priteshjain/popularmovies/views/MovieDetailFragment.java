@@ -116,6 +116,7 @@ public class MovieDetailFragment extends Fragment implements IMoviesDetailView {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             collapsingToolbarLayout.setContentScrimColor(ContextCompat.getColor(mContext, id));
         } else {
+            //noinspection deprecation
             collapsingToolbarLayout.setContentScrimColor(getResources().getColor(R.color.colorPrimary));
         }
 

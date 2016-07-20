@@ -31,7 +31,7 @@ public class MovieListFragment extends Fragment implements IMoviesListingView {
 
     private Context mContext;
     private MovieListAdapter mMovieListAdapter;
-    private ArrayList<Movie> mMovies = new ArrayList<Movie>();
+    private final ArrayList<Movie> mMovies = new ArrayList<>();
     private MovieListPresenter mMovieListPresenter;
     private ProgressBar mProgressbar;
     private String mCurrentPage = "1";

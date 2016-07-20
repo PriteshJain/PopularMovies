@@ -1,8 +1,11 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Cinema &amp; Me</string>
 
-    <string name="summary">Summary</string>
-    <string name="release_date">Release Date:</string>
-    <string name="rating">%s/10</string>
+    <string name="movie_poster">Movie Poster</string>
+    <string name="movie_cover_poster">Movie Cover Poster</string>
+
+    <string name="summary" tools:ignore="UnusedResources">Summary</string>
+    <string name="release_date" tools:ignore="UnusedResources">Release Date:</string>
+    <string name="rating" tools:ignore="UnusedResources">%s/10</string>
 
 </resources>

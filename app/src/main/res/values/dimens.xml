@@ -1,5 +1,53 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="activity_horizontal_margin" tools:ignore="UnusedResources">16dp</dimen>
+    <dimen name="activity_vertical_margin" tools:ignore="UnusedResources">16dp</dimen>
+
+    <dimen name="fragment_movie_list_item_height" tools:ignore="UnusedResources">320dp</dimen>
+    <dimen name="fragment_movie_detail_height" tools:ignore="UnusedResources">320dp</dimen>
+    <dimen name="fragment_movie_detail_poster_width" tools:ignore="UnusedResources">84dp</dimen>
+    <dimen name="fragment_movie_detail_poster_height" tools:ignore="UnusedResources">120dp</dimen>
+
+    <dimen name="xsmall" tools:ignore="UnusedResources">2dp</dimen>
+    <dimen name="small" tools:ignore="UnusedResources">4dp</dimen>
+    <dimen name="medium" tools:ignore="UnusedResources">8dp</dimen>
+    <dimen name="large" tools:ignore="UnusedResources">16dp</dimen>
+    <dimen name="mlarge" tools:ignore="UnusedResources">24dp</dimen>
+    <dimen name="xlarge" tools:ignore="UnusedResources">32dp</dimen>
+    <dimen name="xmlarge" tools:ignore="UnusedResources">48dp</dimen>
+    <dimen name="xxlarge" tools:ignore="UnusedResources">64dp</dimen>
+    <dimen name="padding_xsmall" tools:ignore="UnusedResources">@dimen/xsmall</dimen>
+    <dimen name="padding_small" tools:ignore="UnusedResources">@dimen/small</dimen>
+    <dimen name="padding_medium" tools:ignore="UnusedResources">@dimen/medium</dimen>
+    <dimen name="padding_large" tools:ignore="UnusedResources">@dimen/large</dimen>
+    <dimen name="padding_mlarge" tools:ignore="UnusedResources">@dimen/mlarge</dimen>
+    <dimen name="padding_xlarge" tools:ignore="UnusedResources">@dimen/xlarge</dimen>
+    <dimen name="padding_xmlarge" tools:ignore="UnusedResources">@dimen/xmlarge</dimen>
+    <dimen name="padding_xxlarge" tools:ignore="UnusedResources">@dimen/xxlarge</dimen>
+    <dimen name="margin_xsmall" tools:ignore="UnusedResources">@dimen/xsmall</dimen>
+    <dimen name="margin_small" tools:ignore="UnusedResources">@dimen/small</dimen>
+    <dimen name="margin_medium" tools:ignore="UnusedResources">@dimen/medium</dimen>
+    <dimen name="margin_large" tools:ignore="UnusedResources">@dimen/large</dimen>
+    <dimen name="margin_mlarge" tools:ignore="UnusedResources">@dimen/mlarge</dimen>
+    <dimen name="margin_xlarge" tools:ignore="UnusedResources">@dimen/xlarge</dimen>
+    <dimen name="margin_xmlarge" tools:ignore="UnusedResources">@dimen/xmlarge</dimen>
+    <dimen name="margin_xxlarge" tools:ignore="UnusedResources">@dimen/xxlarge</dimen>
+
+    <dimen name="xsmall_sp" tools:ignore="UnusedResources">2sp</dimen>
+    <dimen name="small_sp" tools:ignore="UnusedResources">4sp</dimen>
+    <dimen name="medium_sp" tools:ignore="UnusedResources">8sp</dimen>
+    <dimen name="large_sp" tools:ignore="UnusedResources">16sp</dimen>
+    <dimen name="mlarge_sp" tools:ignore="UnusedResources">24sp</dimen>
+    <dimen name="xlarge_sp" tools:ignore="UnusedResources">32sp</dimen>
+    <dimen name="xmlarge_sp" tools:ignore="UnusedResources">48sp</dimen>
+    <dimen name="xxlarge_sp" tools:ignore="UnusedResources">64sp</dimen>
+    <dimen name="text_xsmall" tools:ignore="UnusedResources">@dimen/xsmall_sp</dimen>
+    <dimen name="text_small" tools:ignore="UnusedResources">@dimen/small_sp</dimen>
+    <dimen name="text_medium" tools:ignore="UnusedResources">@dimen/medium_sp</dimen>
+    <dimen name="text_large" tools:ignore="UnusedResources">@dimen/large_sp</dimen>
+    <dimen name="text_mlarge" tools:ignore="UnusedResources">@dimen/mlarge_sp</dimen>
+    <dimen name="text_xlarge" tools:ignore="UnusedResources">@dimen/xlarge_sp</dimen>
+    <dimen name="text_xmlarge" tools:ignore="UnusedResources">@dimen/xmlarge_sp</dimen>
+    <dimen name="text_xxlarge" tools:ignore="UnusedResources">@dimen/xxlarge_sp</dimen>
+
 </resources>

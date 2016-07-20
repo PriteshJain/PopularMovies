@@ -9,6 +9,7 @@ import com.priteshjain.popularmovies.constants.Constant;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Locale;
 import java.util.UUID;
 
 import okhttp3.Cache;
@@ -31,7 +32,7 @@ class HttpClient {
             return response.newBuilder()
                     .removeHeader("Pragma")
                     .removeHeader("Cache-Control")
-                    .header("Cache-Control", String.format("max-age=%d", 600))
+                    .header("Cache-Control", String.format(Locale.ENGLISH, "max-age=%d", 600))
                     .build();
         }
     };

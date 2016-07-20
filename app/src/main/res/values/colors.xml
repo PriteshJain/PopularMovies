@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
     <color name="black_overlay">#66000000</color>
-    <color name="black_translucent_overlay">#99000000</color>
+    <color name="black_translucent_overlay" tools:ignore="UnusedResources">#99000000</color>
     <color name="window_background">#FFFFFF</color>
 
 
 
-    <color name="primaryText">#212121</color>
-    <color name="secondaryText">#727272</color>
-    <color name="colorDivider">#B6B6B6</color>
-    <color name="colorDividerLight">#eeeeee</color>
+    <color name="primaryText" tools:ignore="UnusedResources">#212121</color>
+    <color name="secondaryText" tools:ignore="UnusedResources">#727272</color>
+    <color name="colorDivider" tools:ignore="UnusedResources">#B6B6B6</color>
+    <color name="colorDividerLight" tools:ignore="UnusedResources">#eeeeee</color>
 
-    <color name="colorBackground">#e0e0e0</color>
-    <color name="colorBackgroundLight">#eeeeee</color>
+    <color name="colorBackground" tools:ignore="UnusedResources">#e0e0e0</color>
+    <color name="colorBackgroundLight" tools:ignore="UnusedResources">#eeeeee</color>
 
-    <color name="colorGrey50">#fafafa</color>
-    <color name="colorGrey100">#f5f5f5</color>
-    <color name="colorGrey200">#eeeeee</color>
-    <color name="colorGrey300">#e0e0e0</color>
-    <color name="colorGrey400">#bdbdbd</color>
-    <color name="colorGrey500">#9e9e9e</color>
-    <color name="colorGrey600">#757575</color>
+    <color name="colorGrey50" tools:ignore="UnusedResources">#fafafa</color>
+    <color name="colorGrey100" tools:ignore="UnusedResources">#f5f5f5</color>
+    <color name="colorGrey200" tools:ignore="UnusedResources">#eeeeee</color>
+    <color name="colorGrey300" tools:ignore="UnusedResources">#e0e0e0</color>
+    <color name="colorGrey400" tools:ignore="UnusedResources">#bdbdbd</color>
+    <color name="colorGrey500" tools:ignore="UnusedResources">#9e9e9e</color>
+    <color name="colorGrey600" tools:ignore="UnusedResources">#757575</color>
 
 
-    <color name="colorWhite">#FFFFFF</color>
-    <color name="colorOffWhite">#deffffff</color>
+    <color name="colorWhite" tools:ignore="UnusedResources">#FFFFFF</color>
+    <color name="colorOffWhite" tools:ignore="UnusedResources">#deffffff</color>
 
-    <color name="colorMovieTitle">#9e9e9e</color>
-    <color name="colorMovieGenre">#e0e0e0</color>
+    <color name="colorMovieTitle" tools:ignore="UnusedResources">#9e9e9e</color>
+    <color name="colorMovieGenre" tools:ignore="UnusedResources">#e0e0e0</color>
 
-    <color name="colorGolden">#ffc400</color>
+    <color name="colorGolden" tools:ignore="UnusedResources">#ffc400</color>
 </resources>

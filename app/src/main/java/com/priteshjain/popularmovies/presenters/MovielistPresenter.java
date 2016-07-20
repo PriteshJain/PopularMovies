@@ -11,10 +11,10 @@ import rx.functions.Action0;
 import rx.schedulers.Schedulers;
 
 public class MovieListPresenter extends BasePresenter {
-    private IMoviesListingView mMoviesView;
+    private final IMoviesListingView mMoviesView;
     private Subscription mSubscription;
     private String mCurrentPage;
-    private Constant.MovieListType mMovieListType;
+    private final Constant.MovieListType mMovieListType;
 
     public MovieListPresenter(IMoviesListingView view, Constant.MovieListType movieListType) {
         mMoviesView = view;
@@ -26,7 +26,7 @@ public class MovieListPresenter extends BasePresenter {
         fetchMovies();
     }
 
-    public Subscription fetchMovies() {
+    private void fetchMovies() {
         RequestHandler requestHandler = new RequestHandler();
 
         mSubscription = requestHandler.getMovies(mMovieListType, mCurrentPage)
@@ -54,7 +54,6 @@ public class MovieListPresenter extends BasePresenter {
                         mMoviesView.listMovies(paginatedMovie.getResults(), mCurrentPage);
                     }
                 });
-        return mSubscription;
     }
 
     public void stopFetchingMovies(){

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.priteshjain.popularmovies.views.MoviesActivity">
+    tools:context="com.priteshjain.popularmovies.views.MoviesActivity"
+    tools:ignore="UnusedResources">
 
     <FrameLayout
         android:id="@+id/fragment_listing"
